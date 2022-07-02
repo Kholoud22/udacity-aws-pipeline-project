@@ -1,0 +1,31 @@
+---
+
+- name: "create BE directory" 
+  file:
+    path: ~/backend-dir
+    state: directory
+
+- name: "unarchive BE" 
+  file:
+    src: artifact.tar.gz
+    dest: ~/backend-dir
+    
+- name: "install deps"
+  shall: |
+    cd ~/backend-dir/dist
+    pm2 stop default
+    pm2 start main.js
+
+  register: execute_node 
+
+- name: "Configure pm2"
+  become: true
+  shell: |
+    env PATH=$PATH:/user/local/bin pm2 stratup systemd -u ubuntu --hp /home/ubuntu
+
+- name: print msg
+  debug: 
+  message: "{{execute_node.stdout_lines}}"
+
+  
+    
