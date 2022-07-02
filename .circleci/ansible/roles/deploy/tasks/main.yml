@@ -11,7 +11,7 @@
     dest: ~/backend-dir
     
 - name: "install deps"
-  shall: |
+  shell: |
     cd ~/backend-dir/dist
     pm2 stop default
     pm2 start main.js
