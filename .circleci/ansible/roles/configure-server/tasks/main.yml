@@ -6,12 +6,11 @@
 - name: "Install node.js v13"
   become: true
   apt:
-    name: ["nodejs", "npm"]
+    name: ["nodejs"]
     state: latest
     update_cache: yes
 
 - name: "Install PM2"
   npm:
     name: pm2
-    global: yes
-    state: present    
+    global: yes    
