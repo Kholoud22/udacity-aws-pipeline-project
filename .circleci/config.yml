@@ -212,13 +212,10 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      # Checkout code from git
       - checkout
       - install_ansible
-      # Add ssh keys with fingerprint
       - add_ssh_keys: 
           fingerprints: ["64:a3:49:f4:22:37:b3:32:76:17:f3:34:9a:a8:66:de"] 
-      # attach workspace
       - attach_workspace:
           at: ~/
       - run:
@@ -228,7 +225,6 @@ jobs:
             cat inventory.txt
             ansible-playbook -i inventory.txt configure-server.yml
             
-      # Here's where you will add some code to rollback on failure
       - destroy-environment      
 
 #   run-migrations:
