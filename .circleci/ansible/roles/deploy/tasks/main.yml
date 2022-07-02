@@ -23,9 +23,6 @@
   shell: |
     env PATH=$PATH:/user/local/bin pm2 stratup systemd -u ubuntu --hp /home/ubuntu
 
-- name: print msg
-  debug: 
-  message: "{{execute_node.stdout_lines}}"
 
   
     
