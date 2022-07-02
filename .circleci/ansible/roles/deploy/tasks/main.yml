@@ -14,14 +14,13 @@
   shell: |
     cd ~/backend-dir
     npm i
-    npm run build
 
 - name: "Execute node with pm2"
   shell: |
     cd ~/backend-dir/dist
     pm2 stop default
     pm2 start main.js
-    
+
   register: execute_node 
 
 - name: print message
