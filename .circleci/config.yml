@@ -38,7 +38,7 @@ commands:
       - run:
           name: Install nodejs
           command: |
-            curl -fsSL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+            curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
             sudo apt install -y nodejs
             sudo npm i -g n
             sudo n 13.8.0          
@@ -342,6 +342,12 @@ jobs:
             export TYPEORM_MIGRATIONS_DIR=./migrations
             export TYPEORM_ENTITIES=./modules/domain/**/*.entity{.ts,.js}
             export TYPEORM_MIGRATIONS=./migrations/*{.ts,.js}
+            export TYPEORM_CONNECTION=postgres
+            export TYPEORM_HOST=udapeople.cdv6magp2sbb.us-east-1.rds.amazonaws.com
+            export TYPEORM_PORT=5432
+            export TYPEORM_USERNAME=UdaPeople
+            export TYPEORM_PASSWORD=UdaPeople
+            export TYPEORM_DATABASE=postgres
 
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
