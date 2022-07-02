@@ -6,7 +6,7 @@
     state: directory
 
 - name: "unarchive BE" 
-  file:
+  unarchive:
     src: artifact.tar.gz
     dest: ~/backend-dir
     
@@ -16,7 +16,11 @@
     pm2 stop default
     pm2 start main.js
 
-  register: execute_node 
+#   register: execute_node 
+
+# - name: print message
+#   debug: 
+#   msg: "{{execute_node.stdout_lines}}"
 
 - name: "Configure pm2"
   become: true
