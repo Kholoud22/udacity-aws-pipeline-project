@@ -5,6 +5,11 @@
     path: ~/backend-dir
     state: directory
 
+- name: "copy BE directory" 
+  copy:
+    src: artifact.tar.gz
+    dest: ~/backend-dir    
+
 - name: "unarchive BE" 
   unarchive:
     src: artifact.tar.gz
@@ -22,10 +27,10 @@
 #   debug: 
 #   msg: "{{execute_node.stdout_lines}}"
 
-- name: "Configure pm2"
-  become: true
-  shell: |
-    env PATH=$PATH:/user/local/bin pm2 stratup systemd -u ubuntu --hp /home/ubuntu
+# - name: "Configure pm2"
+#   become: true
+#   shell: |
+#     env PATH=$PATH:/user/local/bin pm2 stratup systemd -u ubuntu --hp /home/ubuntu
 
 
   
