@@ -5,10 +5,10 @@
     path: ~/backend-dir
     state: directory
 
-# - name: "copy BE directory" 
-#   copy:
-#     src: artifact.tar.gz
-#     dest: ~/backend-dir    
+- name: "copy BE directory" 
+  copy:
+    src: artifact.tar.gz
+    dest: ~/backend-dir    
 
 - name: "unarchive BE" 
   unarchive:

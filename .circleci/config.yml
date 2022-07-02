@@ -310,17 +310,6 @@ jobs:
     docker:
       # Docker image here that supports Ansible
       - image: cimg/base:stable
-        environment:
-          NODE_ENV: "production"
-          VERSION: "1"
-          ENVIRONMENT: "production"
-          TYPEORM_CONNECTION: "postgres"
-          TYPEORM_HOST: "udapeople.cdv6magp2sbb.us-east-1.rds.amazonaws.com"
-          TYPEORM_USERNAME: "UdaPeople"
-          TYPEORM_PASSWORD: "UdaPeople"
-          TYPEORM_DATABASE: "postgres"
-          TYPEORM_PORT: "5432"
-          TYPEORM_ENTITIES: "./modules/domain/**/*.entity{.ts,.js}"
     steps:
       # Checkout code from git
       - checkout
@@ -333,13 +322,12 @@ jobs:
       - attach_workspace:
           at: ~/
       - restore_cache:
-          keys: ["backend-dist"]    
+          keys: [backend-build]    
       - run:
           name: Install dependencies
           command: |
             cd backend
             npm i
-            npm run build
       - run:
           name: Artifact backend
           command: |
