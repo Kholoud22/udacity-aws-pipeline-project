@@ -387,9 +387,9 @@ jobs:
             echo "here is ${FE_SITE}"
             if curl -s $FE_SITE | grep "Welcome"
             then
-              exist 0
+              exit 0
             else
-              exist 1
+              exit 1
             fi  
       # Here's where you will add some code to rollback on failure  
       - destroy-environment
@@ -456,6 +456,12 @@ workflows:
             - test-backend
             - scan-backend
             - scan-frontend
+            - deploy-infrastructure
+            - configure-infrastructure
+            - run-migrations
+            - deploy-frontend
+            - deploy-backend
+            - smoke-test
       - deploy-infrastructure:
           requires: [test-frontend, test-backend, scan-frontend, scan-backend]
           filters:
