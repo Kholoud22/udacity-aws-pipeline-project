@@ -368,28 +368,29 @@ jobs:
       - run:
           name: Backend smoke test.
           command: |
-            BE_IP=$(aws ec2 describe-instances \
+            BACKEND_IP=$(aws ec2 describe-instances \
             --query 'Reservations[*].Instances[*].PublicIpAddress' \
             --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
             --output text)
 
-            export API_URL="http://${BE_IP}:3030"
-            if curl -s $API_URL/api/status | grep "ok"
+            export API_URL="http://${BACKEND_IP}:3030"
+            echo "${API_URL}"
+            if curl "${API_URL}/api/status" | grep "ok"
             then
-              exit 0
+              return 0
             else
-              exit 1
+              return 1
             fi  
       - run:
           name: Frontend smoke test.
           command: |
-            FE_SITE=http://udapeople-${CIRCLE_WORKFLOW_ID:0:7}.s3-website.${AWS_DEFAULT_REGION}.amazonaws.com
-            echo "here is ${FE_SITE}"
-            if curl -s $FE_SITE | grep "Welcome"
+            URL="http://udapeople-${CIRCLE_WORKFLOW_ID:0:7}.s3-website-${AWS_DEFAULT_REGION}.amazonaws.com/#/employees"            
+            echo ${URL}
+            if curl -s ${URL} | grep "Welcome"
             then
-              exit 0
+              return 1
             else
-              exit 1
+              return 1
             fi  
       # Here's where you will add some code to rollback on failure  
       - destroy-environment
