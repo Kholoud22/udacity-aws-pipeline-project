@@ -424,7 +424,7 @@ jobs:
       # Here's where you will add some code to rollback on failure  
       - destroy-environment
       - revert-migrations
-cleanup:
+  cleanup:
     docker:
       # Docker image here
       - image: cimg/base:stable
