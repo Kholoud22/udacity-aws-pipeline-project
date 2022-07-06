@@ -449,10 +449,6 @@ jobs:
               aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID}"
               aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowID}"
             fi
-      # - run:
-      #     name: Remove old stacks and files
-      #     command: |
-            
             
   notify_on_pass:
     docker:
