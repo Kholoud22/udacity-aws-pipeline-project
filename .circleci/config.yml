@@ -411,8 +411,9 @@ jobs:
             export OldWorkflowID="$(aws cloudformation \
               list-exports --query "Exports[?Name=='WorkflowID'].Value" \
               --no-paginate --output text)"
-            echo $OldWorkflowID >> ~/OldWorkflowId.txt
-            cat ~/OldWorkflowId.txt
+
+            echo ${OldWorkflowID}
+            curl --insecure https://kvdb.io/P311T6vBbbyZxbwby4JZ1k/OldWorkflowID  -d "${OldWorkflowID}" --ssl-no-revoke
       - run:
           name: Update cloudfront distribution
           command: |
@@ -433,12 +434,12 @@ jobs:
       - checkout
       - install_aws_cli
       - install_node
+      - attach_workspace:
+          at: ~/
       - run:
           name: Get old stack workflow id
           command: |
-            export OldWorkflowID=$(aws cloudformation \
-              list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
-              --no-paginate --output text)
+            export OldWorkflowID=$(curl --insecure https://kvdb.io/P311T6vBbbyZxbwby4JZ1k/OldWorkflowID)
             echo OldWorkflowID: "${OldWorkflowID}"
             echo CIRCLE_WORKFLOW_ID "${CIRCLE_WORKFLOW_ID:0:7}"
 
