@@ -432,7 +432,7 @@ jobs:
       - install_aws_cli
       - install_node
       - run:
-          name: Get old stack workflow id
+          name: Get old stack workflow id and Remove old stacks and files
           command: |
             export OldWorkflowID=$(curl --insecure https://kvdb.io/P311T6vBbbyZxbwby4JZ1k/OldWorkflowID)
             echo OldWorkflowID: "${OldWorkflowID}"
