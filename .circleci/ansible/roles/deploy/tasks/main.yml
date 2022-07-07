@@ -28,10 +28,8 @@
     msg: "{{ execute_node.stdout_lines }}"
 
 - name: "Configure pm2"
-  become: true
   shell: |
-    env PATH=$PATH:/user/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
-
-
+    sudo su -c "env PATH=$PATH:/user/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu"
+    pm2 save
   
     
