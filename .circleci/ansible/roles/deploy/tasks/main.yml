@@ -23,10 +23,6 @@
 
   register: execute_node 
 
-- name: print message
-  debug: 
-    msg: "{{ execute_node.stdout_lines }}"
-
 - name: "Configure pm2"
   shell: |
     sudo su -c "env PATH=$PATH:/user/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu"
