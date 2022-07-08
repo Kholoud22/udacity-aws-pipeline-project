@@ -16,6 +16,8 @@ export class EmployeesService {
   private readonly httpService: HttpService;
 
   constructor(baseUrl = process.env.API_URL) {
+    console.log(baseUrl);
+    console.log("env ",process.env);
     this.employeesUrl = `${baseUrl}/api/Employees`;
     this.httpService = new HttpService();
   }

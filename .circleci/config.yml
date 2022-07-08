@@ -69,7 +69,7 @@ commands:
           name: Revert migrations
           when: on_fail
           command: |
-            SUCCESS=$(curl --insecure  https://kvdb.io/P311T6vBbbyZxbwby4JZ1k/migration_<< parameters.Workflow_ID >>)
+            SUCCESS=$(curl --insecure  https://kvdb.io/5ZzTZWbrxiXLERPJTMpgEW/migration_<< parameters.Workflow_ID >>)
             if(( $SUCCESS == 1)); 
             then
               cd ~/project/backend
@@ -262,7 +262,7 @@ jobs:
           command: |
             if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then 
-              curl --insecure https://kvdb.io/P311T6vBbbyZxbwby4JZ1k/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1' --ssl-no-revoke
+              curl --insecure https://kvdb.io/5ZzTZWbrxiXLERPJTMpgEW/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1' --ssl-no-revoke
             fi
       - destroy-environment
       - revert-migrations      
@@ -411,7 +411,7 @@ jobs:
               --no-paginate --output text)"
 
             echo ${OldWorkflowID}
-            curl --insecure https://kvdb.io/P311T6vBbbyZxbwby4JZ1k/OldWorkflowID  -d "${OldWorkflowID}" --ssl-no-revoke
+            curl --insecure https://kvdb.io/5ZzTZWbrxiXLERPJTMpgEW/OldWorkflowID  -d "${OldWorkflowID}" --ssl-no-revoke
       - run:
           name: Update cloudfront distribution
           command: |
@@ -434,7 +434,7 @@ jobs:
       - run:
           name: Get old stack workflow id and Remove old stacks and files
           command: |
-            export OldWorkflowID=$(curl --insecure https://kvdb.io/P311T6vBbbyZxbwby4JZ1k/OldWorkflowID)
+            export OldWorkflowID=$(curl --insecure https://kvdb.io/5ZzTZWbrxiXLERPJTMpgEW/OldWorkflowID)
             echo OldWorkflowID: "${OldWorkflowID}"
             echo CIRCLE_WORKFLOW_ID "${CIRCLE_WORKFLOW_ID:0:7}"
 

@@ -1,0 +1,7 @@
+https://github.com/Kholoud22/udacity-aws-pipeline-project [URL01]
+http://udapeople-3d4648f.s3-website-us-west-2.amazonaws.com [URL02]
+http://d2jed83236gmgf.cloudfront.net [URL03]
+http://ec2-35-164-37-246.us-west-2.compute.amazonaws.com:3030 [URL04]
+http://ec2-52-25-189-178.us-west-2.compute.amazonaws.com:9090 [URL05]
+
+
